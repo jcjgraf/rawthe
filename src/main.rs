@@ -68,6 +68,9 @@ fn process_image(src: &PathBuf, output_dir: &Option<PathBuf>) -> Result<PathBuf,
 fn main() -> Result<()> {
     let cli = Cli::parse();
 
+    // Initialize to enable BMFF
+    rexiv2::initialize()?;
+
     for src in cli.input_images.iter() {
         match process_image(src, &cli.output_dir) {
             Ok(dst) => println!("Stored thumbnail to {:?}", dst),
